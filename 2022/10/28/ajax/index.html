@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="title: ajax笔记date: 2022-10-28 20:23:24tags: ajax（异步交互对象）ajax工作原理 其实就是个对象，叫引擎是因为存在于浏览器里， 判断浏览器创建ajax对象的方式 1.先创建ajax对象 2.open方法：用于设置进行异步请求的目标URL，请求方法及其他参数信息 3.setRequestHeader方法：为请求的HTTP头设置值 1234567891">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2022/10/28/ajax/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="title: ajax笔记date: 2022-10-28 20:23:24tags: ajax（异步交互对象）ajax工作原理 其实就是个对象，叫引擎是因为存在于浏览器里， 判断浏览器创建ajax对象的方式 1.先创建ajax对象 2.open方法：用于设置进行异步请求的目标URL，请求方法及其他参数信息 3.setRequestHeader方法：为请求的HTTP头设置值 1234567891">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="c:/Users/DELL/Desktop/上课/上课截图/ajax工作原理.jpg">
+<meta property="og:image" content="c:/Users/DELL/Desktop/上课/上课截图/jqery%20ajax">
+<meta property="og:image" content="c:/Users/DELL/Desktop/上课/上课截图/jsonP执行原理">
+<meta property="og:image" content="c:/Users/DELL/Desktop/上课/上课截图/cookie登录操作流程.png">
+<meta property="og:image" content="c:/Users/DELL/Desktop/上课/上课截图/登录注册流程图.png">
+<meta property="article:published_time" content="2022-10-28T12:23:24.983Z">
+<meta property="article:modified_time" content="2022-10-28T12:28:05.470Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:/Users/DELL/Desktop/上课/上课截图/ajax工作原理.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ajax" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/10/28/ajax/" class="article-date">
+  <time datetime="2022-10-28T12:23:24.983Z" itemprop="datePublished">2022-10-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p>title: ajax笔记<br>date: 2022-10-28 20:23:24<br>tags:</p>
+<h3 id="ajax（异步交互对象）"><a href="#ajax（异步交互对象）" class="headerlink" title="ajax（异步交互对象）"></a>ajax（异步交互对象）</h3><h5 id="ajax工作原理"><a href="#ajax工作原理" class="headerlink" title="ajax工作原理"></a>ajax工作原理</h5><p><img src="C:\Users\DELL\Desktop\上课\上课截图\ajax工作原理.jpg"></p>
+<p>其实就是个对象，叫引擎是因为存在于浏览器里，</p>
+<p>判断浏览器创建ajax对象的方式</p>
+<p>1.先创建ajax对象</p>
+<p>2.open方法：用于设置进行异步请求的目标URL，请求方法及其他参数信息</p>
+<p>3.setRequestHeader方法：为请求的HTTP头设置值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*   </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">      第1步.创建ajax对象</span></span><br><span class="line"><span class="comment">      var xmlHttp;</span></span><br><span class="line"><span class="comment">      if(window.XMLHttpRequest) &#123;</span></span><br><span class="line"><span class="comment">            //仅仅只有IE6不支持</span></span><br><span class="line"><span class="comment">            alert(&quot;标准写法（ie6不支持）&quot;)</span></span><br><span class="line"><span class="comment">      &#125;</span></span><br><span class="line"><span class="comment">      if(window.ActiveXObject) &#123;</span></span><br><span class="line"><span class="comment">            alert(&quot;s所有IE支持，IE6只支持一种写法&quot;)</span></span><br><span class="line"><span class="comment">      &#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">      第二步  open方法 用于设置进行异步请求的目标URL，请求方法及其他参数信息</span></span><br><span class="line"><span class="comment">      open(&quot;method&quot;,&quot;url&quot;[asyncFlag]);</span></span><br><span class="line"><span class="comment">       method--方法get/post</span></span><br><span class="line"><span class="comment">      url--请求指定地址，并且可以传递查询字符串</span></span><br><span class="line"><span class="comment">      asyncFlag——可选参数，用于指定请求方式，默认为true</span></span><br><span class="line"><span class="comment">            当为true时，服务器请求是异步进行的，也就是脚本执行send（）方法后不等待服务器的执行结果，而是继续执行脚本代码</span></span><br><span class="line"><span class="comment">            当为false时，服务器请求是同步进行的，也就是脚本执行的send（）方法后等待服务器的执行结果的返回，若在等待的过程中超时，则不在等待，继续执行后面的脚本代码！ </span></span><br><span class="line"><span class="comment">      </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">      </span></span><br><span class="line"><span class="comment">      第三步  setRequestHeader方法：为请求的HTTP头设置值</span></span><br><span class="line"><span class="comment">      语法：</span></span><br><span class="line"><span class="comment">            setRequestHeader(&quot;label&quot;,&quot;value&quot;)</span></span><br><span class="line"><span class="comment">            例子：</span></span><br><span class="line"><span class="comment">            setRequestHeader(&quot;content-type&quot;,&quot;application/x-www-form-urlencoded&quot;) </span></span><br><span class="line"><span class="comment">      注意：setRequestHeader()方法必须在调用open方法之后才能调用</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">      </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">      send方法：用于向服务器发送请求，如果请求声明为异步，则该方法将立即返回，否则将等到接收到响应位置</span></span><br><span class="line"><span class="comment">      语法：send([数据])</span></span><br><span class="line"><span class="comment">*/</span> </span><br></pre></td></tr></table></figure>
+
+<h5 id="open方法："><a href="#open方法：" class="headerlink" title="open方法："></a>open方法：</h5><p>   open(“method”,”url”[asyncFlag]);</p>
+<p>   method–方法get/post</p>
+<p>   url–请求指定地址，并且可以传递查询字符串</p>
+<p>   asyncFlag——可选参数，用于指定请求方式，默认为true</p>
+<p>​      当为true时，服务器请求是异步进行的，也就是脚本执行send（）方法后不等待服务器的执行结果，而是继续执行脚本代码</p>
+<p>​      当为false时，服务器请求是同步进行的，也就是脚本执行的send（）方法后等待服务器的执行结果的返回，若在等待的过程中超时，则不在等待，继续执行后面的脚本代码！</p>
+<h5 id="send方法："><a href="#send方法：" class="headerlink" title="send方法："></a>send方法：</h5><p>用于向服务器发送请求，如果请求声明为异步，则该方法将立即返回，否则将等到接收到响应为止<br>      语法：send([数据])</p>
+<h5 id="setRequestHeader方法：为请求的HTTP头设置值"><a href="#setRequestHeader方法：为请求的HTTP头设置值" class="headerlink" title="setRequestHeader方法：为请求的HTTP头设置值"></a>setRequestHeader方法：为请求的HTTP头设置值</h5><p>​      语法：<br>​            setRequestHeader(“label”,”value”)<br>​            例子：<br>​            setRequestHeader(“content-type”,”application/x-www-form-urlencoded”)<br>​      注意：setRequestHeader()方法必须在调用open方法之后才能调用</p>
+<h4 id="Ajax对象事件"><a href="#Ajax对象事件" class="headerlink" title="Ajax对象事件"></a>Ajax对象事件</h4><p>当请求被发送到服务器时，我们需要执行一些基于响应的任务。每当readyState属性改变时，就会触发onreadystatechange事件</p>
+<p>readystate属性存有xmlhttprequest的状态信息</p>
+<p>readystate存储xmlhttprequest状态。从0到4发生变化。</p>
+<p>​    0：请求未初始化（还没调用open）</p>
+<p>​    1：服务器连接已建立，但是还没有发送（还没有调用send（））</p>
+<p>​    2：请求已接收，正在处理中（通常现在可以从响应中获取内容头）</p>
+<p>​    3：请求处理中，通常响应中已有部分数据可用了，但是服务器还没有完成响应的生成</p>
+<p>​    4：请求已完成，且响应已就绪，您可以获取并使用服务器的响应了</p>
+<h6 id="status属性"><a href="#status属性" class="headerlink" title="status属性"></a>status属性</h6><p>​    200：“ok”</p>
+<p>​    404：未找到页面</p>
+<p>​    500：服务器端错误</p>
+<h6 id="readystate存储xmlhttprequest的状态。从0到4发生变化。"><a href="#readystate存储xmlhttprequest的状态。从0到4发生变化。" class="headerlink" title="readystate存储xmlhttprequest的状态。从0到4发生变化。"></a>readystate存储xmlhttprequest的状态。从0到4发生变化。</h6><p>​    0：xmlhttprequest对象还没有完成初始化</p>
+<p>​    1：xmlhttprequest对象开始发送请求</p>
+<p>​    2：xmlhttprequest对象的请求发送完成</p>
+<p>​    3：xmlhttprequest对象开始读取服务器的响应。</p>
+<p>​    4：xmlhttprequest对象读取服务器响应结束</p>
+<h5 id="status属性详解"><a href="#status属性详解" class="headerlink" title="status属性详解"></a>status属性详解</h5><p>1xx：信息响应类，表示接收到请求并且继续处理。</p>
+<p>2xx：处理成功响应类，表示动作被成功接收、理解和接受。</p>
+<p>3xx：重定向响应类，为了完成指定的动作，必须接受进一步处理</p>
+<p>4xx：客户端错误，服务器不能正确执行一个正确的请求</p>
+<p>5xx：服务端错误，服务器不能正确执行一个正确的请求</p>
+<p>responseText：获取服务器端字符串形式数据（包括字符串形式json数据）</p>
+<p>responseXML：获取服务器端XML形式数据</p>
+<h4 id="访问数据HTTP三次握手"><a href="#访问数据HTTP三次握手" class="headerlink" title="访问数据HTTP三次握手"></a>访问数据HTTP三次握手</h4><p>1.客户机通过http向服务器发送第一次请求（open）</p>
+<p>2.服务器响应接受请求（onreadystatechange）</p>
+<p>3.客户机进行数据传送（send）</p>
+<h3 id="ajax封装"><a href="#ajax封装" class="headerlink" title="ajax封装"></a>ajax封装</h3><p>1.封装，把整个ajax放到方法里</p>
+<p>2.从中选出常用参数，作为形参传入</p>
+<h2 id="jQuery中的ajax"><a href="#jQuery中的ajax" class="headerlink" title="jQuery中的ajax"></a>jQuery中的ajax</h2><p>在jq中，$.ajax()是最基础也是最复杂的ajax实现，可以对ajax请求进行全面的控制。他的语法结构为 .ajax(options).其中 options包含了一组用于配置ajax请求的选项，并以“名/值”的形式进行使用</p>
+<img src="C:\Users\DELL\Desktop\上课\上课截图\jqery ajax" alt="image-20220509141110644" style="zoom:80%;" />
+
+
+
+<p>timeout：设置请求超时时间（毫秒），此设置将覆盖$.ajaxSetup()方法的全局设置</p>
+<p>async：默认为true（异步），false（同步），注意，同步请求将锁住浏览器，用户其他操作必须等待请求完成才可以执行</p>
+<h4 id="jqery进行跨域需要加上下面三个参数"><a href="#jqery进行跨域需要加上下面三个参数" class="headerlink" title="jqery进行跨域需要加上下面三个参数"></a>jqery进行跨域需要加上下面三个参数</h4><p>dataType: “jsonp”,<br>        jsonp:”callback”, //请求php的参数名<br>       jsonpCallback: “jsonpCallback”,//要执行的回调函数</p>
+<h3 id="跨域传值"><a href="#跨域传值" class="headerlink" title="跨域传值"></a>跨域传值</h3><p>同源或者同域是由Netscape提出的一个著名的安全策略：指同一个协议、域名、端口</p>
+<p>跨域：指在不同域里获得对应的数据</p>
+<p>实现跨域：</p>
+<p>​        凡是有src 属性的都是可以实现跨域，例如：<script>、<img>、<iframe></p>
+<p>​        实现跨域的三种方式：</p>
+<p>​            第一种</p>
+<p>​                1.主要利用的是domain方式（很多浏览器已经不支持）</p>
+<p>​                2.location.search实现，也可以是ifram，例如面包屑导航</p>
+<p>​            第二种是jsonp</p>
+<p>​            第三种是利用后台代理（cors）（例如：案例跨域传值——服务器处理，php文件处理）</p>
+<h5 id="window-postMessage（h5新增）"><a href="#window-postMessage（h5新增）" class="headerlink" title="window.postMessage（h5新增）"></a>window.postMessage（h5新增）</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">      $(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">            $.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">                  <span class="attr">url</span>:<span class="string">&quot;http://www.qhdlink-student.top/test/jsonp2.php?callback=jsonpCallback&quot;</span>,</span><br><span class="line">                  <span class="attr">type</span>:<span class="string">&quot;POST&quot;</span>,</span><br><span class="line">                  <span class="attr">dataType</span>:<span class="string">&quot;jsonp&quot;</span>,</span><br><span class="line">                  <span class="attr">data</span>:&#123;<span class="attr">username</span>: <span class="string">&#x27;glg&#x27;</span>,<span class="attr">userpwd</span>:<span class="string">&#x27;12345678&#x27;</span>,<span class="attr">userclass</span>:<span class="string">&#x27;74&#x27;</span>,<span class="attr">type</span>:<span class="number">2</span>&#125;,</span><br><span class="line">                  <span class="attr">jsonp</span>:<span class="string">&quot;callback&quot;</span>,<span class="comment">//请求参数名</span></span><br><span class="line">                  <span class="attr">jsonpCallback</span>:<span class="string">&quot;jsonpCallback&quot;</span>,<span class="comment">//执行的回调函数</span></span><br><span class="line">                  <span class="attr">success</span>:<span class="keyword">function</span> <span class="title function_">jsonpCallback</span>(<span class="params">data</span>)&#123;</span><br><span class="line">                        <span class="variable language_">console</span>.<span class="title function_">log</span>(data);</span><br><span class="line">                        <span class="keyword">var</span> t=<span class="string">&#x27;&#x27;</span></span><br><span class="line">                        $.<span class="title function_">each</span>(data,<span class="keyword">function</span>(<span class="params">index,ele</span>)&#123;</span><br><span class="line">                              t+=<span class="string">&quot;&lt;tr&gt;&lt;td&gt;&quot;</span>+(index+<span class="number">1</span>)+<span class="string">&quot;&lt;/td&gt;&lt;td&gt;&quot;</span>+ele.<span class="property">title</span>+<span class="string">&quot;&lt;/td&gt;&lt;td&gt;&quot;</span>+ele.<span class="property">t</span>+<span class="string">&quot;&lt;/td&gt;&lt;/tr&gt;&quot;</span></span><br><span class="line">                        &#125;)</span><br><span class="line">                        </span><br><span class="line">                        $(<span class="string">&quot;table&quot;</span>).<span class="title function_">append</span>(t)</span><br><span class="line">                  &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">      &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="jsonp"><a href="#jsonp" class="headerlink" title="jsonp"></a>jsonp</h3><p>sonp是一种依靠开发人员的聪明才智创造出的一种非官方跨域数据交互协议</p>
+<p>jsonp即json with padding。由于同源策略的限制，xmlHttpRequest只允许请求当前源（域名、协议、端口）的资源。如果要进行跨域请求，我们可以通过使用html的script标记来进行跨域请求，并在响应中返回要执行的script代码，其中可以直接使用json传递js对象。这种跨域的通讯方式称为JSONP。</p>
+<p>JSONP原理：</p>
+<p>​        script标签src属性中的链接却可以访问跨域的js脚本，利用这个特性，服务端不再返回json格式的数据，而是返回一段调用某个函数的js代码，在src中进行了调用，这样实现了跨域。</p>
+<img src="C:\Users\DELL\Desktop\上课\上课截图\jsonP执行原理" alt="image-20220510103040904" style="zoom:150%;" />
+
+<h4 id="后端jsonp跨域说法两种"><a href="#后端jsonp跨域说法两种" class="headerlink" title="后端jsonp跨域说法两种"></a>后端jsonp跨域说法两种</h4><p>1.我们使用的是jsonp跨域</p>
+<p>2.我们使用的是jsonp跨域，并且给我的参数是jsonfn（参数名有的时候后端起名字）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">      <span class="keyword">function</span> <span class="title function_">jsonpCallback</span>(<span class="params">re</span>)&#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(re);</span><br><span class="line">            <span class="keyword">var</span> table=<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;table&quot;</span>)</span><br><span class="line">            <span class="keyword">var</span> th=<span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;tr&quot;</span>)</span><br><span class="line">            <span class="keyword">var</span> tr=<span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;tr&quot;</span>);</span><br><span class="line">            <span class="keyword">var</span> ttr=<span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;tr&quot;</span>);</span><br><span class="line">            <span class="keyword">var</span> tttr=<span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;tr&quot;</span>)</span><br><span class="line">            tttr.<span class="property">innerHTML</span>=<span class="string">&quot;&lt;td&gt;编号&lt;/td&gt;&lt;td&gt;标题&lt;/td&gt;&lt;td&gt;内容&lt;/td&gt;&quot;</span></span><br><span class="line">            th.<span class="property">innerHTML</span>=<span class="string">&quot;天气预报&quot;</span></span><br><span class="line">            table.<span class="title function_">appendChild</span>(th)</span><br><span class="line">            table.<span class="title function_">appendChild</span>(tttr)</span><br><span class="line">            <span class="keyword">for</span>(v <span class="keyword">in</span> re)&#123;</span><br><span class="line">                  tr.<span class="property">innerHTML</span>=<span class="string">&quot;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;&quot;</span>+re[<span class="number">0</span>].<span class="property">title</span>+<span class="string">&quot;&lt;/td&gt;&lt;td&gt;&quot;</span>+re[<span class="number">0</span>].<span class="property">t</span>+<span class="string">&quot;&lt;/td&gt;&quot;</span></span><br><span class="line">                  ttr.<span class="property">innerHTML</span>=<span class="string">&quot;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;&quot;</span>+re[<span class="number">1</span>].<span class="property">title</span>+<span class="string">&quot;&lt;/td&gt;&lt;td&gt;&quot;</span>+re[<span class="number">1</span>].<span class="property">t</span>+<span class="string">&quot;&lt;/td&gt;&quot;</span></span><br><span class="line">                  table.<span class="title function_">appendChild</span>(tr)</span><br><span class="line">                  table.<span class="title function_">appendChild</span>(ttr)</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;http://www.qhdlink-student.top/test/jsonp2.php?callback=jsonpCallback&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="cors介绍"><a href="#cors介绍" class="headerlink" title="cors介绍"></a>cors介绍</h3><p>cors是一个w3c标准，全称是跨域资源共享（cross-origin-resource sharing）</p>
+<p>整个cors通信过程，都是浏览器自动完成，不需要用户参与。cors通信与同源的ajax通信没有差别</p>
+<p>实现cors通信的关键是服务器，只要服务器实现了cors接口，就可以跨源通信。</p>
+<h4 id="如何查看是否跨域"><a href="#如何查看是否跨域" class="headerlink" title="如何查看是否跨域"></a>如何查看是否跨域</h4><h6 id="重要字段"><a href="#重要字段" class="headerlink" title="重要字段"></a>重要字段</h6><p>Access-Control-Allow-Origin:* （*代表都能访问，ip地址代表只能通过ip地址访问）</p>
+<p>Access-Control-Allow-Credentials：该字段可选。他的值是一个布尔值，表示是否允许发送Cookie</p>
+<p>Access-Control-Expose-Headers：该字段可选。cors请求时必须在Access-Control-Expose-Headers里面指定。</p>
+<h4 id="window-postMessage（h5新增）-跨域传值"><a href="#window-postMessage（h5新增）-跨域传值" class="headerlink" title="window.postMessage（h5新增）    跨域传值"></a>window.postMessage（h5新增）    跨域传值</h4><p>介绍：window.postMessage（）方法可以安全的实现跨源通信。通常，对于两个不同页面的脚本，只有当执行他们的页面位于具有相同协议（通常为https），端口号（443为https的默认值），以及主机（两个页面的模数Document.domain设置为相同的值）时，这两个脚本才能相互通信。window.postMessage（）方法提供了一种受控机制来规避此限制，只要正确的使用，这方法就很安全。</p>
+<p>用法：window.postMessage（）：当被调用时，会在所有页面脚本执行完毕后（在该方法之后设置的事件、之前设置的timeout事件）向目标窗口派发一个MessageEvent消息。该MessageEvent消息有四个属性需要注意：</p>
+<p>​    message属性表示该message的类型</p>
+<p>​    data属性为window.postMessage的第一个参数</p>
+<p>​    origin属性发送消息窗口的源（协议+主机+端口号）</p>
+<p>​    source属性计入调用window.postMessage（）方法的窗口信息</p>
+<p>接口地址：https：//developer.mozilla.org/zh-CN/docs/Web/API/Window/postMessage</p>
+<h2 id="http和https的区别"><a href="#http和https的区别" class="headerlink" title="http和https的区别"></a>http和https的区别</h2><p>http：超文本传输协议。默认端口是80</p>
+<p>https：是在http协议基础上加了一层ssl加密协议，之后用默认的端口是443</p>
+<h1 id="formData对象"><a href="#formData对象" class="headerlink" title="formData对象"></a>formData对象</h1><p>FormData就是XMLHTTPRequest Level2新增的一个对象，利用它来提交表单、模拟表单提交，最大的优势就是可以上传二进制文件</p>
+<p>FormData的方法：</p>
+<p>​            append：用于向formdata对象中添加键值对</p>
+<p>​            set（）：设置对应的键key对应的值value（s）</p>
+<p>​                        当指定的key值存在时，append（）方法是将新增的添加到所有键值对最后，而set方法将会覆盖前面的设置的键值对</p>
+<p>​            delete（）：接收一个参数，表示你要删除的key值的名字，如果有多个相同的key，会一并删除</p>
+<p>​            get（）和getAll（）：接收一个参数，表示需要查找的key的名称，返回第一个该key对应的value值。如果有多个相同的key，而且要返回所有的这个key对应的value值。</p>
+<p>​            has（）：该方法也接收一个参数，同样是key的名称，返回一个Bollean值，用来判断foremdata对象是否含有该key</p>
+<p>​            keys（）：该方法不需要接收参数，返回一个迭代器，通过这个迭代器，我们可以遍历formdata对象中所有的key。</p>
+<p>​            values（）：就是遍历value的迭代器，用法与keys（）类似</p>
+<p>​            entries（）：返回一个包含键值对的迭代器</p>
+<h1 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h1><p>cookie是存在于浏览器缓存里的对象。通过document.cookie设置。可以长期存储也可以临时存储。</p>
+<p>使用场景：经常用在：免登陆，记录登录状态，记录常用网址等等。</p>
+<p>在cookie的名或值中不能使分号，逗号，等号，空格。在cookie的名中做到这点很容易，但要保存的值是不确定的。</p>
+<p>用encodeURI（）函数进行编码，他能讲一些特殊符号使用十六进制表示，例如空格将会编码为“20%”，从而可以存储到cookie的值中，而且使用此种方案还可以避免中文乱码的出现。在获取cookie时可以通过decodeURI（）方法对cookie进行解码，然后获取其值</p>
+<p>cookie的保存格式为（每个属性之间通过：’分号+空格’（；）隔开）</p>
+<p>document.cookie=”name=value; expires=evalue; path=pvalue;domain=dvalue; domain=dvalue；secure=svalue;”</p>
+<h5 id="cookie的参数"><a href="#cookie的参数" class="headerlink" title="cookie的参数"></a>cookie的参数</h5><p>name：表示要存入对象的名称，唯一必须设置的参数（通常使用：user@domain格式命名，user为本地用户，domain为所访问网站的域名）</p>
+<p>Value表示要存入的值</p>
+<p>expires：该对象的有效时间（可选）（默认为当前浏览器会话有用，关闭浏览器就消失）</p>
+<p>path：指定该cookie作用范围（可选）（即：在那些网页上有效，默认情况下对于当前网页所在的同一目录下的所有页面有效）</p>
+<p>domain：设置web服务器的cookie共享域（可选）（如：test*.com）表示域名为test*.com的服务器共享该cookie</p>
+<p>secure：设置cookie的传输过程是否加密（可选）（一般为ssh加密）</p>
+<h3 id="各个浏览器cookie个数限制"><a href="#各个浏览器cookie个数限制" class="headerlink" title="各个浏览器cookie个数限制"></a>各个浏览器cookie个数限制</h3><p>IE8增加为每个域名50个，IE7好像也是，IE6为20个</p>
+<p>firefox每个域名cookie的限制为50个</p>
+<p>Opera每个域名cookie的限制为30个</p>
+<p>safari/webkit貌似没有cookie限制。但是如果cookie很多，则会是header代销超过服务器的处理的限制，会导致错误发生</p>
+<p>注意：每个cookie文件大小不要超过4kb</p>
+<img src="C:\Users\DELL\Desktop\上课\上课截图\cookie登录操作流程.png" style="zoom:80%;" />
+
+<h4 id="封装cookie"><a href="#封装cookie" class="headerlink" title="封装cookie"></a>封装cookie</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">setCookie</span>(<span class="params">$name, $value,$day</span>)&#123;</span><br><span class="line">      <span class="keyword">var</span>  data=$name+<span class="string">&quot;=&quot;</span>+<span class="built_in">encodeURI</span>($value);<span class="comment">//拼凑数据，变量名=值</span></span><br><span class="line">      <span class="keyword">var</span>  myData=<span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line">      <span class="keyword">var</span>  mSecond=$day*<span class="number">24</span>*<span class="number">3600</span>*<span class="number">1000</span>;<span class="comment">//毫秒数</span></span><br><span class="line">      myData.<span class="title function_">setTime</span>(myData.<span class="title function_">getTime</span>()+mSecond);<span class="comment">//设置获取时间戳</span></span><br><span class="line">      data=data+<span class="string">&quot;; expires=&quot;</span>+myData.<span class="title function_">toGMTString</span>();<span class="comment">//变量名=值；expires=时间</span></span><br><span class="line">      <span class="variable language_">document</span>.<span class="property">cookie</span>=data;<span class="comment">//创建cookie</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">setCookie</span>(<span class="string">&quot;吴彦祖&quot;</span>,<span class="string">&quot;111&quot;</span>,<span class="number">7</span>)</span><br></pre></td></tr></table></figure>
+
+<p>删除cookie 把时间改成负值</p>
+<h3 id="本地存储的功能和作用"><a href="#本地存储的功能和作用" class="headerlink" title="本地存储的功能和作用"></a>本地存储的功能和作用</h3><h5 id="传统浏览器作用："><a href="#传统浏览器作用：" class="headerlink" title="传统浏览器作用："></a>传统浏览器作用：</h5><p>​    传统浏览器只是“界面呈现工具”：html向服务器发送请求，并读取服务器响应的html文档，负责呈现html文档</p>
+<p>​    如果浏览器处于离线状态，浏览器无法向服务器发送请求</p>
+<h5 id="现在浏览器（h5）"><a href="#现在浏览器（h5）" class="headerlink" title="现在浏览器（h5）"></a>现在浏览器（h5）</h5><p>​    离线应用：控制浏览器缓存哪些页面，离线状态也可以看到页面</p>
+<p>​    web storage：在离线状态下，可以存储用户向服务器提交信息，当再一次链接服务器时自动提交</p>
+<h4 id="web-storage分为两种"><a href="#web-storage分为两种" class="headerlink" title="web storage分为两种"></a>web storage分为两种</h4><p>第一种：session storage：基于session的webstorage。他保存的数据生存期限与用户session期限相同，用户session结束时，session storage保存的数据也丢失</p>
+<p>​    目前大多数浏览器支持，只有火狐不支持</p>
+<p>第二种：local storage：保存在用户磁盘下的web storage</p>
+<p>​        local storage保存的生存期很长，除非用户或程序手动的清除这些数据</p>
+<h5 id="storage的属性和方法："><a href="#storage的属性和方法：" class="headerlink" title="storage的属性和方法："></a>storage的属性和方法：</h5><p>​            length：返回storage里保存了多少组key-value对</p>
+<p>​            key（index）：返回storage中第index个key</p>
+<p>​            getItem（key）：返回storage中指定key 对应的value值</p>
+<p>​            setItem（key，value）：向storage中存入指定的key-value值</p>
+<p>​            removeItem（key）：删除key对应的key——value值</p>
+<p>​            clear（）：删除storage中所有key——value值对</p>
+<p>​            例如：storage.html、留言板.html、留言板json.html    </p>
+<h2 id="cookie-sessionstorage和localstorage的区别"><a href="#cookie-sessionstorage和localstorage的区别" class="headerlink" title="cookie sessionstorage和localstorage的区别"></a>cookie sessionstorage和localstorage的区别</h2><p>共同特点：</p>
+<p>​    在客户端、（浏览器）存储信息</p>
+<p>不同点：</p>
+<p>​        cookie出现时间早，存在兼容性问题（cookie有限制）</p>
+<p>​        sessionStorage和localStorage都是h5之后出现的。sessionstorage临时存储，localstorage长期存储，并且只能手动删除</p>
+<h1 id="登录注册"><a href="#登录注册" class="headerlink" title="登录注册"></a>登录注册</h1><img src="C:\Users\DELL\Desktop\上课\上课截图\登录注册流程图.png" style="zoom:80%;" />
+
+
+
+<p>单权限验证：判断cookie或token（如果是token，链接后端，根据返回值再去判断）</p>
+<p>多权限验证：后端的返回值不同， </p>
+<p>通过ajax获得数据后 如果是原生js 需要通过innerhtml添加内容，因为内容是自带标记和样式的，innerhtml会自动转义成html标记</p>
+<h3 id="h5浏览器缓存机制"><a href="#h5浏览器缓存机制" class="headerlink" title="h5浏览器缓存机制"></a>h5浏览器缓存机制</h3><ol>
+<li>  dom storage（web storage）存储机制</li>
+<li>  web sql database 存储机制</li>
+<li>  application cache（appcache）机制</li>
+<li>  indexed database（indexedDB）</li>
+<li>  file system API</li>
+</ol>
+<p>注意：安卓系统开启本地存储需要添加权限</p>
+<h5 id="离线应用与浏览器缓存的区别"><a href="#离线应用与浏览器缓存的区别" class="headerlink" title="离线应用与浏览器缓存的区别"></a><em>离线应用与浏览器缓存的区别</em></h5><p>服务范围不同:离线应用控制对整个web应用进行缓存。</p>
+<p>离线应用提供的是一种不在线的网站服务功能，而浏览器缓存则只是单纯地缓存网页可靠性:</p>
+<p>离线应用可以精确地控制浏览器需要缓存哪些资源，它是非常可靠的;但是浏览器缓存则完全依靠浏览器行为，具有一定的不可靠性可控制性不同:</p>
+<p>离线应用可以准确控制缓存哪些资源，并可控制刷新缓存;但浏览器缓存则完全依靠浏览器行为，程序无法控制缓存</p>
+<h5 id="配置缓存文件"><a href="#配置缓存文件" class="headerlink" title="配置缓存文件"></a>配置缓存文件</h5><p>不同的服务器配置缓存不一样(缓存配置. doc)</p>
+<p>缓存文件配置讲解:<br>                缓存文件名称index.manifest<br>                如果缓存index. html文件，需要再html后加上对应的缓存文件index. manifest</p>
+<h5 id="判断在线状态"><a href="#判断在线状态" class="headerlink" title="判断在线状态"></a>判断在线状态</h5><p>navigator.onLine:返回当前是否在线。如果返回值为ture，则表示在线，如果返回<br>        false则表示离线<br>        online/offline事件:如果开发者需要在网络状态发生变化时立刻得到通知，则可以通<br>        过online/offlie来检测<br>        <html manifest="online.manifest">指定对哪些资源缓存</p>
+<p>online.html</p>
+<h4 id="applicationCache对象"><a href="#applicationCache对象" class="headerlink" title="applicationCache对象"></a>applicationCache对象</h4><h6 id="applicationchche接口定义了2个方法"><a href="#applicationchche接口定义了2个方法" class="headerlink" title="applicationchche接口定义了2个方法:"></a>applicationchche接口定义了2个方法:</h6><p>void update ()︰该方法强制检查服务器上manifest文件是否有更新</p>
+<p>void swapCache():该方法用于手动更新本地缓存。它只能在applicationCache对象的updateReady事件被触发时调用</p>
+<h4 id="applicationCache对象控制缓存"><a href="#applicationCache对象控制缓存" class="headerlink" title="applicationCache对象控制缓存"></a>applicationCache对象控制缓存</h4><p>applicationchche接口包含了一个status属性，其返回值如下:</p>
+<p>UNCACHE:applicationcache对象所在主机没有开启离线应用功能</p>
+<p>IDIE:空闲状态<br>        CHECKING:正在检查本地缓存的manifest文件与服务器端manifest文件的差异<br>        DOWNLOADING:正在下载需要的缓存的数据<br>        UPDATEREADY:已经从服务器把缓存的文件下载到本地，但还未更新本地缓存<br>        OBSOLETE:缓存过期</p>
+<h3 id="url地址栏里浏览器做了哪些工作"><a href="#url地址栏里浏览器做了哪些工作" class="headerlink" title="url地址栏里浏览器做了哪些工作"></a>url地址栏里浏览器做了哪些工作</h3><p>1.获取后端数据（存储到浏览器缓存里）</p>
+<p>2.从缓存读取数据，并渲染页面</p>
+<p>3.渲染的过程</p>
+<p>​        01.加载html结构</p>
+<p>​        02.生成dom tree</p>
+<p>​        03.加载css</p>
+<p>​        04.生成cssom</p>
+<p>​        05.合并dom tree 和cssom生成渲染树，rander tree</p>
+<p>​        06.开始渲染（如果遇到js，会遇到几种情况：1.更改dom结构，重新渲染，）</p>
+<p>​                    会出现bug，js更改完颜色后，但是页面没有更新，（原因没有重新渲染）</p>
+<p>​                    改进方式：写进方法里；</p>
+<h5 id="HTTP头部信息简单说明"><a href="#HTTP头部信息简单说明" class="headerlink" title="HTTP头部信息简单说明"></a>HTTP头部信息简单说明</h5><p>一、HTTP响应码响应码由三位十进制数字组成，它们出现在由HTTP服务器发送的响应的第一行。 </p>
+<p>下表显示每个响应码及其含义： </p>
+<table>
+<thead>
+<tr>
+<th>100</th>
+<th>继续</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>101</td>
+<td>分组交换协议</td>
+</tr>
+<tr>
+<td>200</td>
+<td>ok</td>
+</tr>
+<tr>
+<td>202</td>
+<td>被采纳</td>
+</tr>
+<tr>
+<td>203</td>
+<td>非授权信息</td>
+</tr>
+<tr>
+<td>204</td>
+<td>无内容</td>
+</tr>
+<tr>
+<td>205</td>
+<td>重置内容</td>
+</tr>
+<tr>
+<td>206</td>
+<td>部分内容</td>
+</tr>
+<tr>
+<td>300</td>
+<td>多选项</td>
+</tr>
+<tr>
+<td>301</td>
+<td>永久传送</td>
+</tr>
+<tr>
+<td>302</td>
+<td>找到</td>
+</tr>
+<tr>
+<td>303</td>
+<td>参见其他</td>
+</tr>
+<tr>
+<td>304</td>
+<td>未改动</td>
+</tr>
+<tr>
+<td>305</td>
+<td>使用代理</td>
+</tr>
+<tr>
+<td>307</td>
+<td>暂时重定向</td>
+</tr>
+<tr>
+<td>400</td>
+<td>错误请求</td>
+</tr>
+<tr>
+<td>401</td>
+<td>未授权</td>
+</tr>
+<tr>
+<td>402</td>
+<td>要求付费</td>
+</tr>
+<tr>
+<td>403</td>
+<td>禁止</td>
+</tr>
+<tr>
+<td>404</td>
+<td>未找到</td>
+</tr>
+<tr>
+<td>405</td>
+<td>不允许的方法</td>
+</tr>
+<tr>
+<td>406</td>
+<td>不被采纳</td>
+</tr>
+<tr>
+<td>407</td>
+<td>要求代理授权</td>
+</tr>
+<tr>
+<td>408</td>
+<td>请求超时</td>
+</tr>
+<tr>
+<td>409</td>
+<td>冲突</td>
+</tr>
+<tr>
+<td>410</td>
+<td>过期的</td>
+</tr>
+<tr>
+<td>411</td>
+<td>要求的长度</td>
+</tr>
+<tr>
+<td>412</td>
+<td>前提不成立</td>
+</tr>
+<tr>
+<td>413</td>
+<td>请求实例太大</td>
+</tr>
+<tr>
+<td>414</td>
+<td>请求url太大</td>
+</tr>
+<tr>
+<td>415</td>
+<td>不支持的媒体类型</td>
+</tr>
+<tr>
+<td>416</td>
+<td>无法满足的请求范围</td>
+</tr>
+<tr>
+<td>417</td>
+<td>失败的预期</td>
+</tr>
+<tr>
+<td>500</td>
+<td>内部服务器错误</td>
+</tr>
+<tr>
+<td>501</td>
+<td>未被使用</td>
+</tr>
+<tr>
+<td>502</td>
+<td>网关错误</td>
+</tr>
+<tr>
+<td>503</td>
+<td>不可用的服务</td>
+</tr>
+<tr>
+<td>504</td>
+<td>网关超时</td>
+</tr>
+<tr>
+<td>505</td>
+<td>http版本未被支持</td>
+</tr>
+</tbody></table>
+<h4 id="二、HTTP头标头标由主键-值对组成。它们描述客户端或者服务器的属性、被传输的资源以及应该实现连接。"><a href="#二、HTTP头标头标由主键-值对组成。它们描述客户端或者服务器的属性、被传输的资源以及应该实现连接。" class="headerlink" title="二、HTTP头标头标由主键/值对组成。它们描述客户端或者服务器的属性、被传输的资源以及应该实现连接。"></a>二、HTTP头标头标由主键/值对组成。它们描述客户端或者服务器的属性、被传输的资源以及应该实现连接。</h4><p><strong>Accept</strong>定义客户端可以处理的媒体类型，按优先级排序；在一个以逗号为分隔的列表中，可以定义多种类型和使用通配符。例如：Accept: image/jpeg,image/png,*/*Accept-Charset 定义客户端可以处理的字符集，按优先级排序；在一个以逗号为分隔的列表中，可以定义多种类型和使用通配符。例如：Accept-Charset: iso-8859-1,utf-8<br><strong>Accept-Encoding</strong> 定义客户端可以理解的编码机制。例如：Accept-Encoding:gzip,compress<br><strong>Accept-Language</strong> 定义客户端乐于接受的自然语言列表。例如：Accept-Language: en,de </p>
+<p><strong>Cache-Control</strong> 一个用于定义缓存指令的通用头标。例如：Cache-Control: max-age=30 </p>
+<p><strong>Connection</strong>一个用于表明是否保存socket连接为开放的通用头标。例如：Connection: close或Connection: keep-alive </p>
+<p><strong>Content-Encoding</strong> 一种介质类型修饰符，标明一个实体是如何编码的。例如：Content-Encoding: zipContent-Language 用于指定在输入流中数据的自然语言类型。例如：Content-Language: en<br><strong>Content-Length</strong>指定包含于请求或响应中数据的字节长度。例如：Content-Length:382<br><strong>Content-Location</strong> 指定包含于请求或响应中的资源定位（URI）。如果是一绝。对URL它也作为被解析实体的相对URL的出发点。例如：Content-Location: <a target="_blank" rel="noopener" href="http://www.myweb.com/news">http://www.myweb.com/news</a> </p>
+<p><strong>Contern-Type</strong> 标明发送或者接收的实体的MIME类型。例如：Content-Type: text/html </p>
+<p>Expires 指定实体的有效期。例如：Expires: Mon,05 Dec 2008 12:00:00 GMT </p>
+<p><strong>Location</strong> 对于一个已经移动的资源，用于重定向请求者至另一个位置。与状态编码302（暂时移动）或者301（永久性移动）配合使用。例如：Location: <a target="_blank" rel="noopener" href="http://www2.myweb.com/index.jsp">http://www2.myweb.com/index.jsp</a> </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/10/28/ajax/" data-id="cl9sh3ah50000iwv65l1odxba" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/10/28/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/10/28/ajax/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/28/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
